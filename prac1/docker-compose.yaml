@@ -1,8 +1,16 @@
 version: '3.8'
 
 services:
-  postgres:
-    image: postgres
-    ports:
-      -"7001:7001"
-    
+    mongodb:
+        image: mongo
+        ports:
+            - "27017:27017"
+        volumes:
+            - .:/data/mongoData
+    busybox:
+        image: busybox
+        ports:
+            - "3001:3001"
+
+volumes:
+    mongodb:
