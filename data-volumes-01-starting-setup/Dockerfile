@@ -4,10 +4,15 @@ WORKDIR /app
 
 COPY package*.json /app
 
+
 RUN npm install
 
 COPY . /app
 
-EXPOSE 8001
+ARG DEFAULTPORT=8001
+
+ENV PORT=$DEFAULTPORT
+
+EXPOSE $PORT
 
 CMD [ "npm","start" ]
