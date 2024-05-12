@@ -1,9 +1,11 @@
 FROM node
 
-COPY package.json package.json
-COPY package-lock.json package-lock.json
-COPY index.js index.js
+WORKDIR /app
+
+COPY package*.json /app/
 
 RUN npm install
 
-ENTRYPOINT [ "node" , "index.js" ]
+COPY . /app/
+
+CMD [ "node","index.js" ]
