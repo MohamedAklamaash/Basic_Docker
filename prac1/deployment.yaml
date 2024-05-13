@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: practice1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: prac1
+  template:
+    metadata:
+      labels:
+        app: prac1
+    spec:
+      containers:
+      - name: container1
+        image: mohamedaklamaash/simple-node-app-deploy
+        imagePullPolicy: Always

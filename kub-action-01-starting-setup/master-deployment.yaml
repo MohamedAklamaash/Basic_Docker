@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+ 
+spec:
+  selector:
+    app: k8ssecondtrial
+  ports:
+  - protocol: 'TCP'
+    port: 80
+    targetPort: 8080 # port that app uses to run
+  type: LoadBalancer
+
+---
+
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: k8ssecondtry
+spec:
+  replicas: 1
+  selector: # identifies which other services needs to be controlled 
+    matchLabels:
+      app: k8ssecondtrial 
+      tier: backend
+  template:
+    metadata:
+      labels:  
+        app: k8ssecondtrial
+        tier: backend
+    spec:
+      containers:
+        - name: k8ssecondtrialcon1
+          image: mohamedaklamaash/kub8try1
+
+
