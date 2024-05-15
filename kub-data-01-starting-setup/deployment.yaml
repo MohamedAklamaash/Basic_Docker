@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storydeployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: story
+  template:
+    metadata:
+      labels:
+        app: story
+    spec:
+      containers:
+        - name: storycontainer1
+          image: mohamedaklamaash/kub8try1:latest
+          imagePullPolicy: Always
+          env: 
+            - name: STORY_FOLDER
+              # value: story
+              valueFrom:
+                configMapKeyRef:
+                  name: envdata
+                  key: folder
+          volumeMounts:
+            - mountPath: /app/story
+              name: storyvolume
+      volumes:
+        - name: storyvolume
+          # emptyDir: {} # empty dir worksfine for 1 pod
+          # hostPath:  #Can be used when we have multiple replicas  (works fine with one worker node)
+          #can be used to share already existing data
+          #   path: /data
+          #   type: DirectoryOrCreate
+          persistentVolumeClaim:
+            claimName: hostpvc
