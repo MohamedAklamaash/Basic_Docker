@@ -1,0 +1,4 @@
+kubectl apply -f .\auth-deployment.yaml -f .\auth-service.yaml -f .\users-deployment.yaml -f .\users-service.yaml -f .\tasks-deployment.yaml -f .\tasks-service.yaml
+docker run -d -p 80:80 --name dummydrontend --rm mohamedaklamaash/k8snetworksfrontend:v1
+minikube service users-service
+minikube service tasks-service

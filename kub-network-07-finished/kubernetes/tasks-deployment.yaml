@@ -1,21 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: users-deployment
+  name: tasks-deployment
 spec:
   replicas: 1
   selector: 
     matchLabels:
-      app: users
+      app: tasks
   template:
     metadata:
       labels:
-        app: users
+        app: tasks
     spec:
       containers:
-        - name: users
-          image: mohamedaklamaash/k8snetworksusersapi:v1
+        - name: tasks
+          image: mohamedaklamaash/k8snetworkstasksapi:v1
           env:
             - name: AUTH_ADDRESS
               # value: "10.99.104.252"
               value: "auth-service.default"
+            - name: TASKS_FOLDER
+              value: tasks

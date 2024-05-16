@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-deployment
+  name: frontend-deployment
 spec:
   replicas: 1
   selector: 
     matchLabels:
-      app: auth
+      app: frontend
   template:
     metadata:
       labels:
-        app: auth
+        app: frontend
     spec:
       containers:
-        - name: auth
-          image: mohamedaklamaash/k8snetworksauthapi:v1
+        - name: frontend
+          image: mohamedaklamaash/k8snetworksfrontend:v1

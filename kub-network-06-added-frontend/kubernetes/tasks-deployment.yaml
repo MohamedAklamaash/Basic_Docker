@@ -14,10 +14,9 @@ spec:
     spec:
       containers:
         - name: tasks
-          image: academind/kub-demo-tasks:latest
+          image: mohamedaklamaash/k8snetworkstasksapi:v1
           env:
             - name: AUTH_ADDRESS
-              # value: "10.99.104.252"
               value: "auth-service.default"
             - name: TASKS_FOLDER
               value: tasks
