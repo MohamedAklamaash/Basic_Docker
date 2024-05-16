@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authbackendapi
+  template:
+    metadata:
+      labels:
+        app: authbackendapi
+    spec:
+      containers:
+        - name: authapicontainer
+          image: mohamedaklamaash/k8snetworksauthapi:v1
+          imagePullPolicy: Always
+

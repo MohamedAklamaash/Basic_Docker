@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usersapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: usersbackendapi
+  template:
+    metadata:
+      labels:
+        app: usersbackendapi
+    spec:
+      containers:
+        - name: usersapicontainer
+          image: mohamedaklamaash/k8snetworksusersapi:v1
+          imagePullPolicy: Always
+          env: 
+            - name: AUTH_ADDRESS
+              # value: localhost
+              # value: "Ip address can be hardcoded"
+              value: "auth-service.default"
+              
+
